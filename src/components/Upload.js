@@ -70,7 +70,7 @@ const Upload = () => {
       const imageUrlData = await res.json();
       console.log(imageUrlData);
       setImageUrl(imageUrlData.url);
-      console.log(url);
+      console.log(imageUrlData);
     } catch (err) {
       console.log(err + "error with image upload");
     }
