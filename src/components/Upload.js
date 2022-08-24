@@ -90,7 +90,8 @@ const Upload = () => {
     form_data.append("email", email);
     form_data.append("tags", tags);
     console.log(form_data);
-    if (imageUrl !== "") {
+
+    if (imageUrl) {
       try {
         const url = "/api/clothes/posts/";
         const res = await fetch(url, {
