@@ -5,7 +5,6 @@ import jwt_decode from "jwt-decode";
 import Upload from "./Upload";
 import UploadButton from "./UploadButton";
 
-
 const MyUploads = () => {
   const [availableClothes, setAvailableClothes] = useState([]);
 
@@ -14,6 +13,7 @@ const MyUploads = () => {
       const token = authService.getCurrentUser().access;
       const decoded = jwt_decode(token);
       const query = decoded.user_email;
+
       const url = `/api/clothes/uploads/${query}/`;
       const res = await fetch(url, {
         method: "GET",

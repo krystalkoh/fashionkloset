@@ -15,6 +15,7 @@ const Upload = () => {
   const [tags, setTags] = useState("");
   const [image, setImage] = useState(null);
   const [availableClothes, setAvailableClothes] = useState([]);
+  const [url, setUrl] = useState("");
 
   const handleName = (event) => {
     setName_of_item(event.target.value);
@@ -52,12 +53,27 @@ const Upload = () => {
     setEmail(decoded.user_email);
   }, []);
 
+  const uploadImage = () => {
+    const data = new FormData();
+    data.append("file", image);
+    data.append("upload_preset", "fashionkloset");
+    data.append("cloud_name", "krystalk");
+    fetch("  https://api.cloudinary.com/v1_1/krystalk/image/upload", {
+      method: "post",
+      body: data,
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        setUrl(data.url);
+      })
+      .catch((err) => console.log(err));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    uploadImage();
     let form_data = new FormData();
-    email && form_data.append("image", image);
-    form_data.append("name_of_item", name_of_item);
+    email && form_data.append("name_of_item", name_of_item);
     form_data.append("description", description);
     form_data.append("price", price);
     form_data.append("brand", brand);
@@ -78,15 +94,6 @@ const Upload = () => {
 
       const products = await res.json();
       console.log(products);
-      //   if (products) {
-      //     setName_of_item("");
-      //     setDescription("");
-      //     setPrice("");
-      //     setBrand("");
-      //     setSize("");
-      //     setTags("");
-      //     setImage(null);
-      //   }
     } catch (error) {
       console.log("error.message");
     }
