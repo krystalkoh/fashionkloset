@@ -81,7 +81,7 @@ const Upload = () => {
     uploadImage();
     const handleform = async () => {
       let form_data = new FormData();
-      form_data.append("imageUrl", imageUrl);
+      imageUrl && form_data.append("imageUrl", imageUrl);
       form_data.append("image", image);
       form_data.append("name_of_item", name_of_item);
       form_data.append("description", description);
@@ -109,7 +109,7 @@ const Upload = () => {
       }
       alert("You have added an item to sell!");
     };
-    setTimeout(() => handleform(), 15000);
+    setTimeout(() => handleform(), 14000);
     clearTimeout();
   };
 
