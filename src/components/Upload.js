@@ -109,7 +109,7 @@ const Upload = () => {
       }
       alert("You have added an item to sell!");
     };
-    setTimeout(() => handleform(), 10000);
+    setTimeout(() => handleform(), 15000);
     clearTimeout();
   };
 
