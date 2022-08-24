@@ -15,7 +15,7 @@ const Upload = () => {
   const [tags, setTags] = useState("");
   const [image, setImage] = useState(null);
   const [availableClothes, setAvailableClothes] = useState([]);
-  const [url, setUrl] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
 
   const handleName = (event) => {
     setName_of_item(event.target.value);
@@ -69,7 +69,7 @@ const Upload = () => {
       );
       const imageUrlData = await res.json();
       console.log(imageUrlData);
-      setUrl(imageUrlData.url);
+      setImageUrl(imageUrlData.url);
       console.log(url);
     } catch (err) {
       console.log(err + "error with image upload");
@@ -79,42 +79,38 @@ const Upload = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     uploadImage();
+    let form_data = new FormData();
+
+    imageUrl && form_data.append("imageUrl", imageUrl);
+    form_data.append("image", image);
+    form_data.append("name_of_item", name_of_item);
+    form_data.append("description", description);
+    form_data.append("price", price);
+    form_data.append("brand", brand);
+    form_data.append("size", size);
+    form_data.append("email", email);
+    form_data.append("tags", tags);
+    console.log(form_data);
+
+    try {
+      const url = "/api/clothes/posts/";
+      const res = await fetch(url, {
+        headers: {
+          Authorization: "Bearer " + authService.getCurrentUser().access,
+        },
+        method: "POST",
+        body: form_data,
+      });
+
+      const products = await res.json();
+      console.log(products);
+    } catch (error) {
+      console.log("error.message with the other form data");
+    }
+    alert("You have added an item to sell!");
   };
 
-  useEffect(() => {
-    const finalForm = async () => {
-      let form_data = new FormData();
-      url && form_data.append("imageUrl", url);
-      form_data.append("image", image);
-      form_data.append("name_of_item", name_of_item);
-      form_data.append("description", description);
-      form_data.append("price", price);
-      form_data.append("brand", brand);
-      form_data.append("size", size);
-      form_data.append("email", email);
-      form_data.append("tags", tags);
-      console.log(form_data);
-
-      try {
-        const url = "/api/clothes/posts/";
-        const res = await fetch(url, {
-          headers: {
-            Authorization: "Bearer " + authService.getCurrentUser().access,
-          },
-          method: "POST",
-          body: form_data,
-        });
-
-        const products = await res.json();
-        console.log(products);
-      } catch (error) {
-        console.log("error.message with the other form data");
-      }
-      alert("You have added an item to sell!");
-    };
-    finalForm();
-  }, [url]);
-
+ 
   return (
     <>
       <h1>Sell an item</h1>
