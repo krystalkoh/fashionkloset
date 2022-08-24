@@ -44,7 +44,10 @@ const Marketplace = () => {
         className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 w-72 m-5"
       >
         <div>
-          <img src= {item.image} className="rounded-t-lg overflow-hidden"></img>
+          <img
+            src={item.imageUrl}
+            className="rounded-t-lg overflow-hidden"
+          ></img>
         </div>
         <div className="p-5">
           <h6 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">

@@ -39,7 +39,7 @@ const MyCart = () => {
         return (
           <div className="  max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 w-72 m-5 max-h-128">
             <div className="max-h-64 overflow-hidden">
-              <img src={url + item.image} width="200px"></img>
+              <img src={url + item.imageUrl} width="200px"></img>
             </div>
             <div className="p-5">
               <h6 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
