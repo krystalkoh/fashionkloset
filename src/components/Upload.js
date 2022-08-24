@@ -54,22 +54,23 @@ const Upload = () => {
   }, []);
 
   const uploadImage = async () => {
+    
     const data = new FormData();
     data.append("file", image);
     data.append("upload_preset", "fashionkloset");
     data.append("cloud_name", "krystalk");
-    await fetch("  https://api.cloudinary.com/v1_1/krystalk/image/upload", {
+    try{
+    const results = await fetch("  https://api.cloudinary.com/v1_1/krystalk/image/upload", {
       method: "POST",
       body: data,
     })
-      .then((resp) => resp.json())
-      .then((data) => {
-        setUrl(data.url);
-        console.log(data);
+      const imageUrlData = await results.json()
+      console.log(imageUrlData);
+        setUrl(imageUrlData.url);
         console.log(url);
-      })
-      .catch((err) => console.log(err + "error with image upload"));
-  };
+      }  catch(err) { 
+        console.log(err + "error with image upload")
+  }}
 
   const handleSubmit = async (e) => {
     e.preventDefault();
