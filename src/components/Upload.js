@@ -76,6 +76,7 @@ const Upload = () => {
     uploadImage();
     let form_data = new FormData();
     url && form_data.append("imageUrl", url);
+    form_data.append("image", image);
     form_data.append("name_of_item", name_of_item);
     form_data.append("description", description);
     form_data.append("price", price);
