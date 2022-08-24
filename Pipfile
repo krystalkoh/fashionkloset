@@ -11,6 +11,10 @@ djangorestframework = "*"
 psycopg2-binary = "*"
 cloudinary = "*"
 django-cors-headers = "*"
+django-heroku = "*"
+gunicorn = "*"
+whitenoise = "*"
+dj-database-url = "*"
 
 [dev-packages]
 
