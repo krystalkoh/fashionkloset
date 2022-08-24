@@ -76,7 +76,7 @@ const Upload = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     uploadImage();
     let form_data = new FormData();
@@ -110,7 +110,6 @@ const Upload = () => {
     alert("You have added an item to sell!");
   };
 
- 
   return (
     <>
       <h1>Sell an item</h1>
