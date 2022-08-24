@@ -37,7 +37,7 @@ const MyOrders = () => {
             <h6>Size:{item.size}</h6>
             <h6>Price:{item.price}</h6>
             <h6>
-              image:<img src={url + item.image} width="200px"></img>
+              image:<img src={url + item.imageUrl} width="200px"></img>
             </h6>
           </div>
         );
