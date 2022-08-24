@@ -74,6 +74,9 @@ const Upload = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     uploadImage();
+  };
+
+  useEffect(() => {
     let form_data = new FormData();
     url && form_data.append("imageUrl", url);
     form_data.append("image", image);
@@ -102,7 +105,8 @@ const Upload = () => {
       console.log("error.message with the other form data");
     }
     alert("You have added an item to sell!");
-  };
+  },[url]);
+  
 
   return (
     <>
