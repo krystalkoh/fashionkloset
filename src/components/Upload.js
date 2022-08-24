@@ -70,17 +70,19 @@ const Upload = () => {
       const imageUrlData = await res.json();
       console.log(imageUrlData);
       setImageUrl(imageUrlData.url);
-      console.log(imageUrlData);
+      console.log(imageUrlData.url);
     } catch (err) {
       console.log(err + "error with image upload");
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     uploadImage();
-    let form_data = new FormData();
+  };
 
+  const handleForm = async () => {
+    let form_data = new FormData();
     imageUrl && form_data.append("imageUrl", imageUrl);
     form_data.append("image", image);
     form_data.append("name_of_item", name_of_item);
@@ -109,6 +111,43 @@ const Upload = () => {
     }
     alert("You have added an item to sell!");
   };
+  useEffect(() => {
+    handleForm();
+  }, [imageUrl]);
+  // let api1 = "https://api.cloudinary.com/v1_1/krystalk/image/upload";
+  // let api2 = "/api/clothes/posts/";
+
+  // let promise1 = fetch(api1)
+  //   .then((response) => response.json())
+  //   .then((json) =>
+  //     json.items.map((item) => {
+  //       return {
+  //         brand: item.brand,
+  //         date_listed: item.date_listed,
+  //         description: item.description,
+  //         email: item.email,
+  //         id: item.id,
+  //         name_of_item: item.name_of_item,
+  //         price: item.price,
+  //         size: item.size,
+  //         tags: item.tags,
+  //       };
+  //     })
+  //   );
+
+  // let promise2 = fetch(api2)
+  //   .then((response) => response.json())
+  //   .then((json) =>
+  //     json.items.map((item) => {
+  //       return {
+  //         imageUrl: item.url,
+  //       };
+  //     })
+  //   );
+
+  // Promise.all(
+  //   [promise1, promise2]
+  //     .then(results => results[0].concat(results[1])
 
   return (
     <>
