@@ -58,7 +58,7 @@ const Upload = () => {
     data.append("file", image);
     data.append("upload_preset", "fashionkloset");
     data.append("cloud_name", "krystalk");
-    fetch("  https://api.cloudinary.com/v1_1/krystalk/image/upload", {
+    await fetch("  https://api.cloudinary.com/v1_1/krystalk/image/upload", {
       method: "POST",
       body: data,
     })
