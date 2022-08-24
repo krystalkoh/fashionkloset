@@ -16,6 +16,16 @@ from decouple import config
 import os
 import dj_database_url
 import django_heroku
+ # Set your Cloudinary credentials
+# ==============================
+from dotenv import load_dotenv
+load_dotenv()
+
+# Import the Cloudinary libraries
+# ==============================
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 import cloudinary
 import cloudinary.uploader
@@ -33,11 +43,14 @@ SECRET_KEY = config('SECRET_KEY')
 
 #Cloudinary config
 
-CLOUDINARY_STORAGE ={
-    'CLOUD_NAME': config('CLOUD_NAME'),
-    'API_KEY': config('API_KEY'),
-    'API_SECRET': config('API_SECRET'),
-}
+cloudconfig = cloudinary.config(secure=True)
+# Log the configuration
+# ==============================
+
+# CLOUDINARY_STORAGE ={
+#     'CLOUD_NAME': config('CLOUD_NAME'),
+#     'API_SECRET': config('API_SECRET'),
+# }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 

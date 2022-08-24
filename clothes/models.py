@@ -1,9 +1,7 @@
 from django.db import models
 from authentication.models import CustomUser
 import cloudinary.uploader
-import cloudinary.api
 from cloudinary.models import CloudinaryField
-from django.db.models.signals import pre_delete
 import cloudinary
 
 ##uploading clothes form
@@ -37,7 +35,6 @@ class Clothes(models.Model):
     tags = models.CharField(max_length=11, choices=TAGS_CHOICES, default=TOP, )
     date_listed = models.DateField(auto_now=True)
     availability = models.BooleanField(default=True)
-    ##FRONT END MUST SEND IN THE EMAIL
     email = models.ForeignKey(CustomUser, on_delete=models.DO_NOTHING, db_index=False, db_column='email')
     image = CloudinaryField('image', blank = True)
     imageUrl = models.CharField(max_length=500, blank=True)
