@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=IM+Fell+Double+Pica&family=Rufina&family=Vidaloka&display=swap");
+
+body {
+  background-color: #e9e4dd;
+}
+
+h1 {
+  font-family: "Vidaloka", serif;
+  font-size: 150px;
+}
+
+p {
+  font-family: "IM Fell Double Pica", serif;
+  font-size: 25px;
+}
+h5 {
+  font-family: "Rufina", serif;
+}

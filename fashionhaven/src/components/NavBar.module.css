@@ -1,0 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=IM+Fell+Double+Pica&family=Rufina&family=Vidaloka&family=Yesteryear&display=swap");
+
+header {
+  background-color: #6b5a4a;
+}
+
+h2 {
+  font-family: "Yesteryear", cursive;
+  font-size: 50px;
+  color: white;
+  margin-top: 3px;
+}
