@@ -59,7 +59,7 @@ const Upload = () => {
     data.append("upload_preset", "fashionkloset");
     data.append("cloud_name", "krystalk");
     fetch("  https://api.cloudinary.com/v1_1/krystalk/image/upload", {
-      method: "post",
+      method: "POST",
       body: data,
     })
       .then((resp) => resp.json())
@@ -68,14 +68,15 @@ const Upload = () => {
         console.log(data);
         console.log(url);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err + "error with image upload"));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     uploadImage();
     let form_data = new FormData();
-    email && form_data.append("name_of_item", name_of_item);
+    url && form_data.append("image", url);
+    form_data.append("name_of_item", name_of_item);
     form_data.append("description", description);
     form_data.append("price", price);
     form_data.append("brand", brand);
@@ -97,7 +98,7 @@ const Upload = () => {
       const products = await res.json();
       console.log(products);
     } catch (error) {
-      console.log("error.message");
+      console.log("error.message with the other form data");
     }
     alert("You have added an item to sell!");
   };
