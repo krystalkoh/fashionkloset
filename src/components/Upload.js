@@ -65,6 +65,8 @@ const Upload = () => {
       .then((resp) => resp.json())
       .then((data) => {
         setUrl(data.url);
+        console.log(data);
+        console.log(url);
       })
       .catch((err) => console.log(err));
   };
