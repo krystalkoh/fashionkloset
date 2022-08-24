@@ -40,7 +40,7 @@ class Clothes(models.Model):
     ##FRONT END MUST SEND IN THE EMAIL
     email = models.ForeignKey(CustomUser, on_delete=models.DO_NOTHING, db_index=False, db_column='email')
     image = CloudinaryField('image', blank = True)
-    imageUrl = models.TextField(max_length=500, blank=True)
+    imageUrl = models.CharField(max_length=500, blank=True)
 
     def __str__(self):
         return f'{self.id}'

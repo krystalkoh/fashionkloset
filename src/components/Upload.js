@@ -53,7 +53,7 @@ const Upload = () => {
     setEmail(decoded.user_email);
   }, []);
 
-  const uploadImage = () => {
+  const uploadImage = async () => {
     const data = new FormData();
     data.append("file", image);
     data.append("upload_preset", "fashionkloset");
@@ -218,7 +218,6 @@ const Upload = () => {
             id="image"
             accept="image/png, image/jpeg"
             onChange={handleImageChange}
-            required
           />
         </div>
         <div className="w-96 col-start-6 row-start-3 row-span-2 place-self-center text-xl">
