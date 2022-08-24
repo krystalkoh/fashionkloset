@@ -1,0 +1,1 @@
+web: gunicorn fashionkloset.wsgi --log-file -
