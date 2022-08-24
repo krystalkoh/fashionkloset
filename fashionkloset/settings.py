@@ -33,10 +33,11 @@ SECRET_KEY = config('SECRET_KEY')
 
 #Cloudinary config
 
-CLOUD_NAME = config('CLOUD_NAME'),
-API_KEY = '931787991936648',
-API_SECRET = config('API_SECRET'),
-
+CLOUDINARY_STORAGE ={
+    'CLOUD_NAME': config('CLOUD_NAME'),
+    'API_KEY': config('API_KEY'),
+    'API_SECRET': config('API_SECRET'),
+}
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
