@@ -53,6 +53,7 @@ const Upload = () => {
 
   const uploadImage = async () => {
     const data = new FormData();
+    let form_data = new FormData();
     data.append("file", image);
     data.append("upload_preset", "fashionkloset");
     data.append("cloud_name", "krystalk");
@@ -66,49 +67,43 @@ const Upload = () => {
         }
       );
       const imageUrlData = await res.json();
-      console.log(imageUrlData);
-      setImageUrl(imageUrlData.url);
       console.log(imageUrlData.url);
+
+      form_data.append("imageUrl", imageUrlData.url);
+      form_data.append("image", image);
+      form_data.append("name_of_item", name_of_item);
+      form_data.append("description", description);
+      form_data.append("price", price);
+      form_data.append("brand", brand);
+      form_data.append("size", size);
+      form_data.append("email", email);
+      form_data.append("tags", tags);
+      console.log(form_data);
+
+      try {
+        const url = "/api/clothes/posts/";
+        const res = await fetch(url, {
+          headers: {
+            Authorization: "Bearer " + authService.getCurrentUser().access,
+          },
+          method: "POST",
+          body: form_data,
+        });
+
+        const products = await res.json();
+        console.log(products);
+      } catch (error) {
+        console.log("error.message with the other form data");
+      }
+      alert("You have added an item to sell!");
     } catch (err) {
       console.log(err + "error with image upload");
     }
   };
 
-  const handleform = async () => {
-    let form_data = new FormData();
-    imageUrl && form_data.append("imageUrl", imageUrl);
-    form_data.append("image", image);
-    form_data.append("name_of_item", name_of_item);
-    form_data.append("description", description);
-    form_data.append("price", price);
-    form_data.append("brand", brand);
-    form_data.append("size", size);
-    form_data.append("email", email);
-    form_data.append("tags", tags);
-    console.log(form_data);
-
-    try {
-      const url = "/api/clothes/posts/";
-      const res = await fetch(url, {
-        headers: {
-          Authorization: "Bearer " + authService.getCurrentUser().access,
-        },
-        method: "POST",
-        body: form_data,
-      });
-
-      const products = await res.json();
-      console.log(products);
-    } catch (error) {
-      console.log("error.message with the other form data");
-    }
-    alert("You have added an item to sell!");
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     uploadImage();
-    imageUrl && handleform();
   };
   // const handleSubmit = async (e) => {
   //   e.preventDefault();
