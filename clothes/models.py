@@ -39,7 +39,7 @@ class Clothes(models.Model):
     availability = models.BooleanField(default=True)
     ##FRONT END MUST SEND IN THE EMAIL
     email = models.ForeignKey(CustomUser, on_delete=models.DO_NOTHING, db_index=False, db_column='email')
-    image = CloudinaryField('image')
+    image = CloudinaryField('image', blank = True)
 
     def __str__(self):
         return f'{self.id}'
