@@ -9,7 +9,6 @@ from rest_framework.permissions import IsAuthenticated
 from django.db.models import Q
 import cloudinary.uploader
 import cloudinary
-import CustomModel.models
 
 
 

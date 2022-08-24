@@ -52,7 +52,7 @@ capybara-*.html
 /tmp
 /db/*.sqlite3
 /db/*.sqlite3-journal
-/fashionhaven/public/system
+/fashionkloset/public/system
 /coverage/
 /spec/tmp
 *.orig
