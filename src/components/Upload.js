@@ -53,94 +53,98 @@ const Upload = () => {
     setEmail(decoded.user_email);
   }, []);
 
-  // const uploadImage = async () => {
-  //   const data = new FormData();
-  //   data.append("file", image);
-  //   data.append("upload_preset", "fashionkloset");
-  //   data.append("cloud_name", "krystalk");
+  const uploadImage = async () => {
+    const data = new FormData();
+    data.append("file", image);
+    data.append("upload_preset", "fashionkloset");
+    data.append("cloud_name", "krystalk");
 
-  //   try {
-  //     const res = await fetch(
-  //       "https://api.cloudinary.com/v1_1/krystalk/image/upload",
-  //       {
-  //         method: "POST",
-  //         body: data,
-  //       }
-  //     );
-  //     const imageUrlData = await res.json();
-  //     console.log(imageUrlData);
-  //     setImageUrl(imageUrlData.url);
-  //     console.log(imageUrlData.url);
-  //   } catch (err) {
-  //     console.log(err + "error with image upload");
-  //   }
-  // };
+    try {
+      const res = await fetch(
+        "https://api.cloudinary.com/v1_1/krystalk/image/upload",
+        {
+          method: "POST",
+          body: data,
+        }
+      );
+      const imageUrlData = await res.json();
+      console.log(imageUrlData);
+      setImageUrl(imageUrlData.url);
+      console.log(imageUrlData.url);
+    } catch (err) {
+      console.log(err + "error with image upload");
+    }
+  };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   uploadImage();
-  //   let form_data = new FormData();
-  //   imageUrl && form_data.append("imageUrl", imageUrl);
-  //   form_data.append("image", image);
-  //   form_data.append("name_of_item", name_of_item);
-  //   form_data.append("description", description);
-  //   form_data.append("price", price);
-  //   form_data.append("brand", brand);
-  //   form_data.append("size", size);
-  //   form_data.append("email", email);
-  //   form_data.append("tags", tags);
-  //   console.log(form_data);
-
-  //   try {
-  //     const url = "/api/clothes/posts/";
-  //     const res = await fetch(url, {
-  //       headers: {
-  //         Authorization: "Bearer " + authService.getCurrentUser().access,
-  //       },
-  //       method: "POST",
-  //       body: form_data,
-  //     });
-
-  //     const products = await res.json();
-  //     console.log(products);
-  //   } catch (error) {
-  //     console.log("error.message with the other form data");
-  //   }
-  //   alert("You have added an item to sell!");
-  // };
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const url = "https://api.cloudinary.com/v1_1/krystalk/image/upload";
-    const result = fetch(url, {
-      method: "POST",
-      body: data,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        let form_data = new FormData();
-        imageUrl && form_data.append("imageUrl", imageUrl);
-        form_data.append("image", image);
-        form_data.append("name_of_item", name_of_item);
-        form_data.append("description", description);
-        form_data.append("price", price);
-        form_data.append("brand", brand);
-        form_data.append("size", size);
-        form_data.append("email", email);
-        form_data.append("tags", tags);
-        return fetch("/api/clothes/posts/", {
+    uploadImage();
+    const handleform = async () => {
+      let form_data = new FormData();
+      imageUrl && form_data.append("imageUrl", imageUrl);
+      form_data.append("image", image);
+      form_data.append("name_of_item", name_of_item);
+      form_data.append("description", description);
+      form_data.append("price", price);
+      form_data.append("brand", brand);
+      form_data.append("size", size);
+      form_data.append("email", email);
+      form_data.append("tags", tags);
+      console.log(form_data);
+
+      try {
+        const url = "/api/clothes/posts/";
+        const res = await fetch(url, {
           headers: {
             Authorization: "Bearer " + authService.getCurrentUser().access,
           },
           method: "POST",
           body: form_data,
         });
-      })
-      .then((response) => response.json());
-    console.log(response).catch((err) => {
-      console.log("request failed", err);
+
+        const products = await res.json();
+        console.log(products);
+      } catch (error) {
+        console.log("error.message with the other form data");
+      }
+      alert("You have added an item to sell!");
+    };
+    setTimeout(() => {
+      handleform(), 3000;
     });
   };
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  // const url = "https://api.cloudinary.com/v1_1/krystalk/image/upload";
+  // const result = fetch(url, {
+  //   method: "POST",
+  //   body: data,
+  // })
+  //   .then((response) => response.json())
+  //   .then((data) => {
+  //     let form_data = new FormData();
+  //     imageUrl && form_data.append("imageUrl", imageUrl);
+  //     form_data.append("image", image);
+  //     form_data.append("name_of_item", name_of_item);
+  //     form_data.append("description", description);
+  //     form_data.append("price", price);
+  //     form_data.append("brand", brand);
+  //     form_data.append("size", size);
+  //     form_data.append("email", email);
+  //     form_data.append("tags", tags);
+  //     return fetch("/api/clothes/posts/", {
+  //       headers: {
+  //         Authorization: "Bearer " + authService.getCurrentUser().access,
+  //       },
+  //       method: "POST",
+  //       body: form_data,
+  //     });
+  //   })
+  //   .then((response) => response.json());
+  // console.log(response).catch((err) => {
+  //   console.log("request failed", err);
+  // });}
   // const handleSubmit = (e) => {
   //   e.preventDefault();
   //       uploadImage();
