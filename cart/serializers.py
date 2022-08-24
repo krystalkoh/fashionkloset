@@ -16,4 +16,4 @@ class OrderSerializer(serializers.ModelSerializer):
 class ClothesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Clothes
-        fields = ['name_of_item','brand','size','price','image']
+        fields = ['name_of_item','brand','size','price','imageUrl']
