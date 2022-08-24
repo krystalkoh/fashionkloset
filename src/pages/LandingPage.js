@@ -7,7 +7,7 @@ const Home = () => {
     <div className=" grid grid-cols-3 ">
       <div className="flex ml-24 col-span-1">
         <h1 id="title" className="flex">
-          FashionKloset
+          Kloset
         </h1>
       </div>
       <div className="grid mt-10 ml-20 col-span-2 grid-rows-2 grid-cols-2 h-36">
